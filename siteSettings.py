@@ -26,6 +26,8 @@ import sys
 #PROJ_ROOT = os.path.abspath(os.path.dirname(__file__))
 PROJ_ROOT = os.path.abspath(os.path.dirname(__file__))
 
+PIPELINE_YUI_BINARY = "/usr/bin/yui-compressor"
+
 SCRIPT_NAME = os.environ['DJANGO_SCRIPT_NAME']  # set in sourceme.sh
 USING_DJANGO_DEV_SERVER = ('runserver' in sys.argv)
 if USING_DJANGO_DEV_SERVER:
@@ -86,6 +88,9 @@ DATA_URL = SCRIPT_NAME + "data/"
 STATIC_ROOT = os.path.join(PROJ_ROOT, "build", "static", "")
 STATIC_URL = SCRIPT_NAME + 'static/'
 
+# helper for django-pipeline
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
 # Awesome. Needed in Django 1.3 but causes deprecation warning in Django 1.4.
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
@@ -118,6 +123,7 @@ INSTALLED_APPS = (
     'geocamUtil',
 
     'django_digest',
+    'pipeline'
 
     'django.contrib.admin',
     'django.contrib.auth',
