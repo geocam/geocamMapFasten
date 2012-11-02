@@ -9,6 +9,6 @@ from django.conf.urls.defaults import url, patterns
 urlpatterns = patterns(
     'mapFastenApp.views',
 
-    url(r'^$', lambda request: redirect(reverse('geocamTiePoint_backbone')),
+    url(r'^$', 'home',
         {}, 'mapFasten_home'),
 )
